@@ -1,7 +1,7 @@
 ##The Git Guide for Mac Users
 _Easy-to-follow instructions for using the version control system_
 
-by Julie Bickford
+**by Julie Bickford**
 
 
 ###Overview

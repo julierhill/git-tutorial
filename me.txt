@@ -1,2 +1,4 @@
 this is a text file.
 
+It is not a binary file. It does not display images or do fancy formatting.
+

@@ -4,192 +4,206 @@ _Easy-to-follow instructions for using the version control system_
 **by Julie Bickford**
 
 ---
-<br><br>
-###Overview
+
+###Introduction
 
 #####What is Git?
 
-Git is a tool that allows you to keep track of multiple versions of a project. At any point in modifying the file, you can use Git to view earlier versions, view changes made along the way, and even revert to one of those earlier versions. Let’s say you’ve created a résumé that you’ve organized chronologically, but you’re thinking about using a skills-based organization instead. You could create a second file, copy the information from the original file and paste it into the new file, then save the file under a name like “Skills-based Resume.docx.” This can become tedious and, more than likely, you’ll end up with several files with inconsistent naming patterns, and a poorly organized workstation. 
+Git is an application that allows you to track a projects's development over time. With Git, you can view earlier versions of the project, view changes made along the way, and revert to a previous version. It also allows multiple authors collaborating on a single project to contribute independently of one another, then merge those several versions again for a final product.
+ Git works with virtually any file type; however, it works best with text files. If you need to insert images, create tables, or design a layout, Git cannot specify the exact changes among versions. It can still keep a log of a project's development over time, though.
+#####Who can use Git?
 
-Instead of creating new files, you can simply “commit” (or save) the file to Git at certain milestones. Once you’ve committed the résumé that is organized chronologically, feel free to add or delete text and move sections around. If you don’t like the new pattern, use Git to revert to the previous version. Git works with virtually any file type. For more sophisticated files, i.e. those that offer complicated formatting options and the ability to insert media, Git isn’t able to specify the exact changes made from one version to the next, but it can still log the file’s development over time. The program is relatively easy to install and use on your Mac computer. #####Who can use Git?
-Git was created in 2005 by Linus Torvalds, the same man who created the Linux operating system, and is mostly used by software engineers. It can be just as useful for non-technical users, however. Some people who could benefit from Git are professionals writing reports, graduate students writing dissertations, authors writing books, and members of a group collaborating on a publication (Git also allows multiple users to modify a single file, keeping track of each user’s contributions and logging each version separately—more on this feature later). Teachers often collaborate and could benefit from Git as well. Those who teach at the same grade level create curriculum plans together, outlining the goals, lessons, and assignments they will use to help students meet prescribed standards. Usually, one teacher creates a document on his computer, adds content, then saves it and sends it off as an email attachment. The other teachers download the document, add their changes, then save it individually and, once again, email it as an attachment. They now have four or five different versions of a file that will need to be consolidated and edited, taking up yet more precious time. Git can help streamline this process and save time.
----
-<br><br>###Using Git
-#####Terminal
-Before getting into Git, you will need to know a few things about using your computer’s terminal, as the Git application runs through the terminal. Terminal is located in the Utilities folder, inside the Applications folder. A faster way to access Terminal is to use Spotlight, your computer’s search tool. _See figure 1.1._
+Whether you're writing software, designing a website, writing a novel, developing a curriculum, working alone or in a large group, Git helps keep a project organized. You don't need an extensive technical background in order to understand it. Many people who must cooperate with developers, such as graphic designers, quality assurance testers, and IT support staff, may benefit from using Git as it can facilitate communication and collaboration among teams as well. 
+#####Where to Find Git
+The program is available on [Git’s website](http://git-scm.com/downloads). Follow Git's instructions for downloading and installing the program on your Mac computer.
+***
+####Before Starting a Project
+#####Get Familiar with Terminal
+You must be comfortable using Terminal since it serves as Git's user interface. Terminal is located in the Utilities folder, inside the Applications folder. A faster way to access Terminal is to use Spotlight, your computer’s search tool. _See figure 1.1._
 <br><br>
 ![Figure 1.1](images/spotlight.png "Figure 1.1")
 <br><br>
-Below is a key for common commands and shortcuts used in Terminal (these will make more sense to you after you’ve started using Git).
+Below is a key for common commands and shortcuts used in Terminal.
 * **pwd** = _present working directory_
 * **ls** = _list contents in the directory_
 * **cd** = _change the working directory_
 * **control-c** = _cancel previous command_ (maybe you misspelled a word so the command didn't work)
 * **up arrow** = _enter previous command_ (continue clicking the up arrow until the desired command is displayed)
-  
-<br><br>#####Download, Install, and Setup
-The program is available on [Git’s website](http://git-scm.com/downloads). After following the instructions for downloading and installing the program on your computer, open Terminal and customize your settings for Git: 
-1. Your username
+
+Use Terminal, rather than Finder, to manage folders and files:
+
+* **mkdir [foldername]** = _create new folder_ (make sure the present working directory is where you want to store the folder)
+* **touch [filename]** = _create new file_ (make sure the present working directory is where you want to store the file; include extension in file name)
+
+* **rm [filename]** = _delete file_ (this command permanently deletes the file form your hard drive, so be careful using it)
+Note: Throughout this tutorial, all commands are typed in **bold**. Several commands require you to enter your own information, such as the name of a folder or file, as shown above. _Brackets_ ( [ ] ) are used to indicate information that will be selected by the user. DO NOT include brackets in the command.
+
+		*Helpful tip:
+		
+		When typing the names of existing files and folders, use this shortcut: 
+		"first letter, Tab". Terminal will automatically complete the file name for you.		e.g. "G, Tab" --> "GitDocs"		
+#####Configure Settings in GitAfter installing Git, customize your settings for username, email, and text editor. There are many settings you can configure, but those can be addressed once you become more acquainted with the program. 
+1. Username
    	**git config --global user.name [John Doe]**
 
-2. Your email address:
+2. Email address:
 
    	**git config --global user.email [jdoe@somewhere.com]**
 	
-3. The editor, or the application you may use when typing messages in Git:
+3. Text editor:
 
 	**git config --global core.editor [name]**
 	
-	*At times, you will have to compose brief messages for Git. You may find a plain text editor helpful for these instances. There are a few applications that work in conjunction with Terminal: Pico, emacs, vi, and nano. Though they are all very similar to one another, nano may be the most user-friendly and is the text editor of choice for this tutorial.
+	*Please note that nano is the text editor of choice for this tutorial.
 	
-To check that you’ve correctly entered your settings, use the command **git config –list**.  
-For a reference list of commands, simply type **git help**.
+To check that you  have correctly entered your settings, use the command **git config –list**.  
+#####Create a Working Directory
 
-The final step for setting up Git will take place in your Finder window. You will need to create a folder that will house the documents you plan to use with Git. It’s most convenient to store this folder in your home folder. When naming folders and files, try to limit the name to 1-2 words. Omit spaces in between words if possible: the shorter the name, the more quickly you can type commands. Lastly, Git commands are case sensitive, so using all lower-case names might save time as well.
+You will need to create a working directory, or a folder that will house the documents related to the project you will track in Git. Store this folder within your home folder for more direct access when working in Terminal.
 
-<br><br>  
-#####The Stages of a Project
-
-A project will go through a basic three-step process in Git. It may be easier to understand this process by starting with the final stage, where Git takes a snapshot of the file in its current state and “commits” (or saves) that version to its directory. This is the _commit_ stage. Prior to this step, you have made changes to a file and “staged” it, i.e. told Git that you’re getting ready to save a new version of the file. This is the _staged area_. Before staging a file, however, you must enter it into your working directory so that Git becomes aware of the file you are working with. _See figure 1.2._![Figure 1.2](images/stages.png "Figure 1.2") 
-***  
-<br><br>
-#####Basic Git Commands
-You’ll start by telling Git which folder contains the document you will be modifying. Git refers to this folder as the “repository.” This is the folder that you created in your home folder during the setup process. In Terminal, change the directory to this folder by using the following command:
-**cd [folder name]**
-Now, tell Git this is the folder where you are _initializing a repository_:
+	Tips for Naming Files:
+		* Limit the name to one or two words 
+		* Omit spaces in between words if possible
+		* Commands in Terminal are case sensitive, so use lower-case names for efficiency
+***
+ ####Start a New Project as a Single Contributor#####Initializing a Repository
+Start by telling Git where to set up a "repository," or a location where it will store all of the information related to each version of the project.  This must be the same folder you are using as your working directory.
+In Terminal, change the present working directory to your desired working directory:
+**cd [foldername]**
+Once you have directed Git to the proper folder, initialize a repository with the following command:
 **git init**
-  
-  _See figure 1.3._
+    _See figure 1.2._
 
-<br><br>
-![Figure 1.3](images/git_init.png "Figure 1.3")
-<br><br>
-You can check that you’ve correctly set up the repository by asking the terminal for the _present working directory_ (**pwd**). You can also ask it to list the files contained in the repository (**ls**).
-To stage a file, use the _add_ command:**git add [file name]**After staging the file, always check the status to make sure there haven’t been any changes made to it since staging it:**git status** After checking the status, you can then commit the version to Git. Every commit requires a message, or reason, for the commit. This message should offer a brief description of its current state, or the milestone you’ve reached, and you can word it however you like. For example, “initial commit,” “added new section,” and so on.**git commit –m "[message]"**		
- _See figure 1.4._
-<br><br>
-  ![Figure 1.4](images/stage_status_commit.png "Figure 1.4") 
-<br><br>
-**Helpful tip:**
-* Rather than typing the full name of a file, use this shortcut:
-		First letter, Tab
-  Git will automatically complete the file name for you.
-		e.g. "G, Tab" --> "GitDocs"Now you can resume working on your project. When you reach the next milestone, follow the same process to save a new version: git add, git status, git commit.***
-<br><br>#####More Complex Commands for Tracking a Project
-Git gives you several options besides simply tracking, staging, and committing files.
-<br><br>
-######_Ignore files in your repository_
-You might have files saved in your repository that you do not want Git to track (i.e. keep showing up when you type “git status”). This requires creating a “hidden” file first. Programs on your computer automatically create files that store data. These files are not intended for the user to open, and therefore remain hidden when the user views files in Finder. 
+![Figure 1.2](images/git_init.png "Figure 1.2")
+*You can check that you have correctly set up the repository by asking Terminal for the _present working directory_ (pwd).
 
-1. **nano .gitignore**
-2. **type** the name(s) of the file(s) Git will ignore (accuracy matters!)
-3. **save** changes and **exit** nano
+#####Staging Files
+
+The first step to tracking a file is making Git aware of it. This step is called "staging". "Within your working directory, you may have several files that you want to track (as well as others that you do not want to track--more on this in a bit). Though Git can track many files concurrently, it might be easier to work with only one file as you are first learning the program.
+To stage the file that you want Git to track, type**git add [file name]**
+If this is an empty file, you may want to make changes to it before saving the initial version in Git. If work is already in progress, you may want to save the initial version sooner than later.
+***
+####Checking the Status of a File
+
+Before saving a version of your project, check the _status_ of the file by typing **git status**. Status will inform you of several things, including:
+
+1. If changes were made and staged for commit
+2. If there are untracked files in the directory
+3. If changes were made that have not been staged for commit
+
+Paying attention to the git status output can help you determine what to do next.
+#####Changes Were Made and Staged for CommitIf the desired changes have been made and staged, you can then "commit" a version to the repository. This means that Git takes a snapshot of the file at that exact moment and stores that information. Every commit requires a _message_, or reason, for the commit. This message should offer a brief description of its current state, or the milestone you have reached, and you can word it however you like. For example, “initial commit,” “added introduction,” "rough draft"and so on.**git commit –m "[message]"**		
+ _See figure 1.3._
+<br><br>
+  ![Figure 1.3](images/stage_status_commit.png "Figure 1.3") 
+<br><br>
+
+
+#####There are Untracked Files in the Directory
+If you have untracked files in your directory that you wish to remain untracked, tell Git to "ignore" them. For example, Figure 1.3 shows two files in the working directory, one tracked (Response.rtf) and one untracked (Git Guide.docx). Git will continue to list Git Guide.docx unless directed otherwise, and this could become distracting when you're working on this project for a long period of time.
+
+In order to ignore a file, you must first create a “hidden” file. Programs on your computer automatically create files that store data. These files are not intended for the user to open, and therefore remain hidden when the user views files in Finder. Follow the series of commands below to create a file type which Git will ignore, stage the file, and commit to the repository:
+
+1. **nano .gitignore** to create a file in which you list the files you want Git to ignore
+2. type **[filename(s)]** Git will ignore (accuracy matters!)
+3. save changes and exit nano
 4. **git status** will tell you that you have one untracked file: .gitignore
 5. **git add .gitignore**
 6.  **git commit -m "[message]"**
 
 Now, when you type git status, you should see only the file(s) that Git is tracking. To modify .gitignore, simply open it in the text editor and add/delete file names, then add and commit those changes to Git.
-<br><br>
-######_View staged versus unstaged changes_
 
-Let’s say you’ve modified a project then staged the changes in Git. Then, you get sidetracked and take a phone call, grab some coffee, then come back to your work station and continue modifying your project. YOu When you type git status, you’ll see something like this:
+#####Changes Were Made but Not Yet Staged
 
-![Figure 1.5](images/unstaged_staged.png "Figure 1.5")
+Perhaps you are working on a report for an entire work day, but you don't necessarily want to commit a new version with every paragraph or page you add. This could become tedious, interrupt your work flow, and possibly result in an overwhelming number of file versions. Instead, you stage the file at various times during the day without committing--before lunch, again before the afternoon meeting, then one last time at the end of the day when you finally make a commit.
 
-This informs you that you’ve made changes to the project since last staging it. To see exactly what changes you made since it was last staged, type
+If you change a file after staging it, a git status command will bring this to your attention. (_See Figure 1.4._) You will need to stage the file again before committing; otherwise, you’ll lose any changes that were made to it since the previous staging. 
 
-**git diff**
+![Figure 1.4](images/unstaged_staged.png "Figure 1.4")
 
-Git will show you the changes that were made since the last stage. Minus signs (-) indicate what was deleted, while plus signs (+) indicate what was added. _See figure 1.6_
-<br><br>
-![Figure 1.6](images/git_diff.png "Figure 1.6")
-<br><br>
+######Viewing Differences with git diff
 
-While you likely won’t need git diff for tracking a single project, it does help when you’re working on multiple projects at the same time. In this scenario, Git will show you which files have been staged for commit, and which have been modified but not yet staged. More on this in the next section.To see the difference between the staged version of a project and its _last commit_, type
+To know that there are staged and unstaged changes is helpful, but it would be better if you could see exactly what was added and/or deleted since you last staged the file. Use **git diff** to see those differences. Minus signs (-) indicate what was deleted, while plus signs (+) indicate what was added. 
+
+Figure 1.5 indicates that the line, "Here are more changes that I haven't staged yet," was deleted from the Response.rtf since its last stage, while nothing new was added. If you want to keep the changes that have been made since the last stage, then stage the file again. If you want to "reset," or unstage the changes that you have made since, then a git status command will show you how to do that.
+
+![Figure 1.5](images/git_diff.png "Figure 1.5")
+Similarly, if you want to view the differences between the staged version of a project and its _previous commit_, type
 **git diff --staged**
 
-*If you modify a project after staging it, you’ll need to stage it again before committing, otherwise you’ll lose the any changes that were saved to it since the earlier stage. 
-<br><br>
-######_Unstage a file after you've already staged it_
+***
 
-Perhaps you’ve staged the file before realizing there is something else you wanted to modify; or, you’re working with multiple files and you staged them at the same time, but realized you need to unstage one:
+####Accessing Information about the Project's Development
+
+#####View the Commit History
+
+After you’ve modified and saved several versions of your project, you may need to view a history of all the commits you’ve made. To do this, type
+
+**git log**
+
+As you can see in the figure below, Git generates a list of all of the commits you’ve made in reverse chronological order. For the Response.rtf example, there were four versions committed to the repository. Perhaps your project has eight versions thus far, but you only see the first four. Terminal only shows you one page of commits at a time. To view the next page of commits, press **space**. To return to the command line, type the letter **q**.
+<br><br>
+![Figure 1.7](images/git_log.png "Figure 1.7")
+<br><br>
+
+#####View Differences between Committed Versions
+
+You've already learned git diff, the command used to see what changes have been made to the project since its last commit. If you'd like to see the differences between each commit, type
+
+**git log -p**
+
+This command will show you line-by-line differences, but only for text files.
+
+#####Limit the Output
+
+Suppose you have committed many versions of a project you have been working on for a month and you don't want to see all of the commits you have made. Following "git log," add the number of commits you want to see with a dash preceding the number:
+
+**git log -3**
+
+#####Make it Pretty
+
+Tired of trying to make sense of the lengthy outputs for each commit? Use the following command to condense the information you need to know into one line for each commit:
+
+**git log --pretty=oneline**
+
+These represent just a few ways in which you can customize the git log output. There are many more, which you can access on [Git's website](http://git-scm.com/book/en/Git-Basics-Viewing-the-Commit-History).
+
+***
+####Correcting Mistakes as a Single Contributor
+
+#####Unstage a File after You've Already Staged It
+
+Perhaps you’ve staged a file before realizing there is something else you wanted to modify; or, you’re working with multiple files and you staged them at the same time, but realized you need to unstage one:
 
 **git reset HEAD [file name]**
-<br><br>
-######_Remove a file that you mistakenly told Git to track, while keeping it on your hard drive_
+
+#####Remove a File from Your Working Directory _While Keeping it on Your Hard Drive_
 
 Maybe you overlooked this file when running the ignore command, and now need to unstage and remove from working directory: 
 
 **git rm –cached [file name]**
-<br><br>
-######_Remove a file from your working directory AND your hard drive_
 
-* **rm [file name]**
-* **git status**
-* **git rm [file name]**
-* **git commit –a**
-
-######_Changing your last commit_
+#####Change Your Last Commit
 
 It’s easy to fix mistakes made when committing a version. Maybe you committed a version before adding a required section, or maybe you messed up the commit message:
 
 **git commit –amend**
 
 Your previous commit message will open in the text editor. If you edit the message, the previous commit message will be overwritten.  
-<br><br>
-######_Reverting to an earlier version_
+
+#####Revert to the Previous Version
 
 At some point in your work flow, you might decide that you don’t like the changes you’ve made since the last commit and want to revert to the previous version of your project. To do this, begin with git status, then
 
 **git checkout -- [file]**
 
 <br><br>
-#####Viewing Previous Versions
 
-After you’ve modified and saved several versions of your project, you may decide that you want to view a history of all the commits you’ve made. To do this, type
+		*Helpful Tip:
+		For a reference list of Git commands, type **git help** at any time.
 
-**git log**
 
-As you can see in the figure below, Git generates a list of all of the commits you’ve done in reverse chronological order. For the Response.rtf example, there were four versions committed to the repository. Perhaps your project has eight versions thus far, but you only see the first four. Terminal only shows you one page of commits at a time. To view the next page of commits, press **space**. To return to the command line, type the letter **q**.
+
+---
 <br><br>
-![Figure 1.7](images/git_log.png "Figure 1.7")
-<br><br>
-######What do you want to know about the previous versions?
-
-There are several commands that allow you to obtain different kinds of information when viewing the commit history. 
-<br><br>
-
-######_Viewing differences between versions_
-
-You've already learned **git diff**, the command used to see what changes have been made to the project since its last commit. If you'd like to see the differences between each commit, type
-
-**git log -p**
-
-This command will show you line-by-line differences, which is more helpful for people writing code. If you're working on a presentation, dissertation, or some other lengthy text project, you'll want to use a slightly different command:
-
-**git log -p --word-diff**
-
-As suggested by the command, this will show you the word differences between versions.
-<br><br>
-
-######_Limiting the output_
-
-Suppose you have committed many versions of your project and you don't want to see all of them. Following "git log," add the number of commits you want to see with a dash preceding the number:
-
-**git log -3**
-
-This command can be combined with other commands you are making, for instance:
-
-**git log -p --word-diff -3**
-<br><br>
-
-######_Make it pretty_
-
-Tired of trying to make sense of the lengthy outputs for each commit? Use the following command to condense the information you need to know into one line for each commit:
-
-**git log --pretty=oneline**
-
-There are plenty of other commands for obtaining the exact information you want to know about each commit, but those listed above are the most common commands a single user may need. If you're tracking a complex project in Git over a long period of time, you might benefit from some of those other commands, which you can find on [Git's website](http://git-scm.com/book/en/Git-Basics-Viewing-the-Commit-History).
-<br><br>
-<br><br>
-These commands should be enough to start tracking a file in Git. If you'd like to learn more advanced features Git offers, such as collaboration among several authors, the next section will be available soon!
+These commands should be enough to start tracking a file in Git as a single contributor. If you'd like to learn more advanced features Git offers, such as collaboration among several authors, the next section will be available soon!
